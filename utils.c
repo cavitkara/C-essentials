@@ -1,3 +1,6 @@
+#include"utils.h"
+
+
 /*
 is an armstrong number*/
 int isarmstrong(int x )
@@ -31,7 +34,7 @@ int power(int base, int exp)
 
 #include<conio.h>
 #include<time.h>
-void calculate_average()
+int calculate_average()
 {
 
 	char ch;
@@ -71,7 +74,7 @@ void calculate_average()
 
 	if (!cnt){
 		printf("hic giris yapmadiniz!!\n");
-		return 1;
+		return -1 ;
 	}
 
 	printf("%d adet sayi girdiniz\n", cnt);
@@ -113,7 +116,7 @@ int sumdigit(int x)
 int revdigit(int x)
 {
 	int res = 0;
-	int digit_param  = 1;
+	//int digit_param  = 1;
 
 	while (x != 0){
 		res = res * 10 + x % 10;
@@ -145,3 +148,219 @@ unsigned long long factorial(unsigned long long x)
 
 	return res;
 }
+
+int permutation( int n, int r)
+{
+	return factorial(n) / factorial(n - r);
+}
+
+int combination(int n, int r)
+{
+	return factorial(n) / factorial(n - r) / factorial(r);
+}
+
+int isperfect( int x)
+{
+	int sum = 0;
+
+	for(int i = 1; i <= x / 2; i++)
+	{
+		if (x % i == 0)
+			sum += i;
+	}
+
+	return sum == x;
+}
+
+void distribute_rand_in_years(unsigned year_min, unsigned year_max)
+{
+	while(1){
+		printf("%d ", rand() % (year_max - year_min) + year_min);
+		getch();
+	}
+}
+
+void randomize(void)
+{
+	srand(time(NULL));
+}
+
+void set_array_random(int* arr, unsigned n)
+{
+
+	for(int i = 0; i < n; ++i)
+		arr[i] = rand() % 1000;
+}
+
+void print_arr(const int* arr, unsigned n)
+{
+	for(int i = 0; i < n; i++){
+		if (i && i % PRINT_ITEM_INLINE == 0)
+			putchar('\n');
+		printf("%4d ", arr[i]);
+	}
+		
+
+	printf("\n-----------------------------------------------------------------------\n");
+}
+
+double calculate_prob_of_tossing_a_coin(unsigned int number_of_toss)
+{
+	#define HEAD 1
+	unsigned head_count = 0;
+
+	for(int i = 0; i < number_of_toss; ++i)
+		if (rand() % 2)
+			++head_count;
+
+	double prob = (double)head_count / number_of_toss;
+
+	printf("Head Porbability of tossing a coin %d times: %f\n", number_of_toss, prob);
+
+	return prob;
+}
+
+double get_random_rational_num()
+{
+	return (double)rand() / RAND_MAX;
+}
+
+double calculate_pi_monte_carlo_sim(unsigned number_of_points)
+{
+	double x, y;
+	unsigned inside_cnt = 0;
+
+	for(int i = 0; i < number_of_points; ++i){
+		x = get_random_rational_num();
+		y = get_random_rational_num();
+		if ( x * x + y * y <= 1)
+			++inside_cnt;
+	}
+
+	double pi = 4. * inside_cnt / number_of_points;
+
+	printf("%d times calculated pi: %f\n", number_of_points, pi);
+
+	return pi;
+}
+
+int roll_2dices_sum(void)
+{
+	return rand() % 6 + 1 + rand() % 6 + 1;
+}
+
+int play_crasp(void)
+{
+	int sum = roll_2dices_sum();
+
+	switch(sum) {
+		case 7 :
+		case 11: return 1;
+		case 2 :
+		case 3 :
+		case 12: return 0;
+		default: return crasp_point(sum);
+
+	}
+
+}
+
+int crasp_point(int dice)
+{	
+	while(1){
+		int new_dice = roll_2dices_sum();
+		if (new_dice == dice) return 1;
+		if (new_dice == 7)    return 0;
+	}	
+}
+
+double calculate_prob_crasp_monte_carlo_sim(unsigned number_of_trial)
+{
+	unsigned win_cnt = 0;
+
+	for(int i = 0; i < number_of_trial; ++i)
+		if (play_crasp() == 1)
+			++win_cnt;
+
+	double prob = (double) win_cnt / number_of_trial;
+
+	printf("%d times crasp win prob: %f\n", number_of_trial, prob);
+
+	return prob;
+}
+
+void print_random_password(void)
+{
+	
+	int len = rand() % (MAX_PASSWORD_LEN - MIN_PASSWORD_LEN + 1) + MIN_PASSWORD_LEN;
+
+	for (int i = 0; i < len; ++i)
+		putchar(get_random_alphanum_char());
+
+	putchar('\n');
+}
+
+char get_random_alphanum_char(void)
+{
+	char ch;
+	while (1){
+		if (isalnum(ch = rand() % 128))
+			return ch;
+	}
+}
+
+double calculate_mean_of_odd_numbers(int* arr, int size)
+{
+	int odd_cnt = 0;
+	int sum_odd = 0;
+
+	for (int i = 0; i < size; i++)
+		if ( arr[i] % 2){
+			odd_cnt++;
+			sum_odd += arr[i];
+		}
+
+	if (odd_cnt)
+		return (double)sum_odd / odd_cnt;
+	else {
+		printf("Dizide tek sayi yok\n");
+		return -1;
+	}
+}
+
+void find_min_max_element(int* arr, int size)
+{
+	int min = arr[0], max = arr[0];
+	int min_idx = 0, max_idx = 0;
+
+
+	for (int i = 1; i < size; ++i)
+		if (arr[i] > max)
+			max = arr[i], max_idx = i;
+		else if (arr[i] < min)
+			min = arr[i], min_idx = i;
+	
+	printf("min: arr[%d] = %d	max: arr[%d] = %d\n", min_idx, min, max_idx, max);
+}
+
+void find_runnerup(int* arr, int size)
+{
+	int runnerup;
+	int max;
+
+	max = arr[0];
+	runnerup = arr[1];
+
+	if (arr[1] > arr[0])
+		runnerup = arr[0], max = arr[1];
+
+	for (int i = 2; i < size; ++i)
+		if (arr[i] > max)
+			runnerup = max, max = arr[i];
+		else if (arr[i] > runnerup)
+			runnerup = arr[i];
+
+
+	printf("runnerup: %d\n", runnerup);
+
+	}
