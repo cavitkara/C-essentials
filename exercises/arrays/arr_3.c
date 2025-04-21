@@ -1,0 +1,2 @@
+/* Let arr1, arr2, arr3 are integer arrays. For a given value val. find i1, i2, i3 indices from each array in order satisfies this condition. i1 + i2 + i3 = val- Find and algorithm which runs better than o(n^3)
+*/

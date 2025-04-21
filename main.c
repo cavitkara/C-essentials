@@ -2,18 +2,22 @@
 
 #include"utils.h"
 
-#define SIZE                    5
+#define SIZE                    6
 #define NUMBER_OF_TRIAL         100000000
 #define NUMBER_OF_POINTS        1000000000
 
 int main() 
 {
 
-    randomize();
 
-    int arr[SIZE];
-    set_array_random(arr, SIZE);
-    print_arr(arr, SIZE);
+    int x = 3;
+    int y = 5;
 
-    find_runnerup(arr, SIZE);
+    printf("x: %d   y: %d\n", x, y);
+
+    swap(&x, &y);
+
+    printf("x: %d   y: %d\n", x, y);
+    return 0;
+
 }

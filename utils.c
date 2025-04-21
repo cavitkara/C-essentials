@@ -364,3 +364,111 @@ void find_runnerup(int* arr, int size)
 	printf("runnerup: %d\n", runnerup);
 
 	}
+
+	int linear_search(int* arr, int size, int item)
+	{
+		int i = 0;
+
+		for (i = 0; i <= size && arr[i] != item; ++i){
+			// null statement
+		}
+		
+		if (i < size)
+		{
+			printf("%d sayisi %d. eleman", item, i);
+			return i;
+		}
+		printf("%d saysisi bulunamadi\n", item);
+		return -1;
+	}
+
+	void revese_arr(int* arr, int size)
+	{
+		
+		for (int i = 0; i < size / 2; i++)
+		{
+			int temp = arr[i];
+			arr[i] = arr[size - 1 - i];
+			arr[size - 1 - i] = temp;
+		}
+
+		print_arr(arr, size);
+		
+	}
+
+	double calculate_standart_deviation(int* arr , int size)
+	{
+		//TODO
+
+		return .0;
+	}
+
+	
+void buble_sort(int* arr, int size)
+{
+	for (int i = 0; i < size -1; ++i )
+		for (int j = 0; j < size - 1 - i; ++j){
+			if (arr[j] > arr[j + 1]){
+				int temp = arr[j + 1 ];
+				arr[j + 1] = arr[j];
+				arr[j] = temp;
+			}
+		}
+
+	print_arr(arr, size);
+}
+
+void buble_sort_odd_even_order(int* arr, int size)
+{
+	for (int i = 0; i < size -1; ++i )
+		for (int j = 0; j < size - 1 - i; ++j){
+			if ((arr[j] % 2 == 0 && arr[j + 1 ] % 2) || ((arr[j] % 2 == arr[j + 1] % 2) && (arr[j] > arr[j + 1])) ){
+				int temp = arr[j + 1 ];
+				arr[j + 1] = arr[j];
+				arr[j] = temp;
+			}
+		}
+
+	print_arr(arr, size);
+}
+
+void selection_sort(int* arr, int size)
+{
+	for (int i = 0; i < size - 1; ++i){
+		int min_idx = i;
+		for (int j = i + 1; j < size; ++j){
+			if (arr[j] < arr[min_idx])
+				min_idx = j;
+		}
+		if ( min_idx != i){
+			int temp = arr[min_idx];
+			arr[min_idx] = arr[i];
+			arr[i] = temp;
+		}
+	}
+
+	print_arr(arr, size);
+}
+
+void binary_search(int* arr, int size)
+{
+	//TODO
+}
+
+int merge_sorted_arrays(int* arr1, int size1, int* arr2, int size2, int* arr3)
+{
+	//TODO
+	return 0;
+}
+
+void number_of_elements(int* arr1,  int size, int* cnts )
+{
+	//TODO
+}
+
+void swap(int* x, int* y)
+{
+	int temp = *x;
+	*x = *y;
+	*y = temp;
+}
