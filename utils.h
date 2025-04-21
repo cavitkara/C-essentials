@@ -36,11 +36,11 @@ int roll_2dices_sum(void);
 char get_random_alphanum_char(void);
 void print_random_password(void);
 double calculate_mean_of_odd_numbers(int* arr, int size);
-void find_min_max_element(int* arr, int size);
-void find_runnerup(int* arr, int size);
-int linear_search(int* arr, int size, int item);
+void find_min_max_element(const int* arr, int size);
+void find_runnerup(const int* arr, int size);
+int linear_search(const int* arr, int size, int item);
 void revese_arr(int* arr, int size);
-double calculate_standart_deviation(int* , int);
+double calculate_standart_deviation(const int* , int);
 void buble_sort(int* arr, int size);
 void buble_sort_odd_even_order(int* arr, int size);
 void selection_sort(int* arr, int size);
@@ -52,7 +52,17 @@ void swap(int*, int*);
 /*-----------------------------------------------------------
 Buraya 25. ders örnekleri üzerinden gecilip tekrar yazilacak
 ----------------------------------------------------------- */
-
-
+void get_circle_area(double radius, double* area);
+void get_circle_values( double radius, double* area, double* circum);
+void printArray2(const int*, int);
+int sum_array(const int *, int);
+double get_mean(const int*, int );
+double get_std_deviation(const int*, int);
+int get_array_max(const int* p, int);
+void get_array_min_max(const int* arr, int size, int* min, int* max);
+void reverse_array2(int* , int);
+void reverse_array3(int*, int);
+void bsort(int arr[], int size);
+void copy_array(int* pdest, const int* source, int size);
 
 #endif

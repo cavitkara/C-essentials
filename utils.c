@@ -1,4 +1,5 @@
 #include"utils.h"
+#include<math.h>
 
 
 /*
@@ -328,7 +329,7 @@ double calculate_mean_of_odd_numbers(int* arr, int size)
 	}
 }
 
-void find_min_max_element(int* arr, int size)
+void find_min_max_element(const int* arr, int size)
 {
 	int min = arr[0], max = arr[0];
 	int min_idx = 0, max_idx = 0;
@@ -343,7 +344,7 @@ void find_min_max_element(int* arr, int size)
 	printf("min: arr[%d] = %d	max: arr[%d] = %d\n", min_idx, min, max_idx, max);
 }
 
-void find_runnerup(int* arr, int size)
+void find_runnerup(const int* arr, int size)
 {
 	int runnerup;
 	int max;
@@ -365,7 +366,7 @@ void find_runnerup(int* arr, int size)
 
 	}
 
-	int linear_search(int* arr, int size, int item)
+	int linear_search(const int* arr, int size, int item)
 	{
 		int i = 0;
 
@@ -396,7 +397,7 @@ void find_runnerup(int* arr, int size)
 		
 	}
 
-	double calculate_standart_deviation(int* arr , int size)
+	double calculate_standart_deviation(const int* arr , int size)
 	{
 		//TODO
 
@@ -471,4 +472,105 @@ void swap(int* x, int* y)
 	int temp = *x;
 	*x = *y;
 	*y = temp;
+}
+
+void get_circle_area(double radius, double* area)
+{
+	*area = 3.14159 * radius * radius;
+}
+
+void get_circle_values( double radius, double* p_area, double* p_circum)
+{
+	*p_area = 3.14159 * radius * radius;
+	*p_circum = 2 * 3.14159 * radius;
+}
+
+void printArray2(const int* p, int size)
+{
+	while (size--)
+		printf("%3d ", *p++);
+
+	putchar('\n');
+}
+
+int sum_array(const int* p, int size)
+{
+	int sum = 0;
+	for (int i = 0; i < size; ++i){
+		sum += *(p + i);
+	}
+
+	return sum;
+}
+
+double get_mean(const int* p, int size)
+{
+	return (double)sum_array(p, size) / size;
+}
+double get_std_deviation(const int* p, int size)
+{
+	double sum_square = 0;
+	double mean = get_mean(p, size);
+
+	for (int i = 0; i < size; ++i)
+	{
+		sum_square += (p[i] - mean) * (p[i] - mean);
+	}
+
+	return sqrt(sum_square / (size -1));
+}
+
+int get_array_max(const int* p, int size)
+{
+	int max = *p;
+
+	for(int i = 1; i < size; ++i)
+		if (p[i] > max)
+		
+			max = p[i];
+		
+	return max;
+	
+}
+
+
+void get_array_min_max(const int* p, int size, int* min, int* max)
+{
+	*min = *max = *p;
+
+	for (int i = 1; i < size; ++i){
+		if (p[i] > *max)
+			*max = p[i];
+		else if (p[i] < *min)
+			*min = p[i];
+	}
+}
+
+void reverse_array2(int* p, int size)
+{
+	for (int i =  0 ; i < size / 2; ++i )
+		swap(p + i, p + size - 1 - i );
+}
+
+void reverse_array3(int* p, int size)
+{
+	int* p_end = p + size;
+	int n = size / 2;
+
+	while (n--)
+		swap(p++, --p_end);
+}
+
+void bsort(int p[], int size)
+{
+	for (int i = 0; i < size - 1; ++i)
+		for (int j = 0; j < size - 1 - i; ++j)
+			if ( p[j ] > p[j + 1])
+				swap(p + j + 1, p + j);
+}
+
+void copy_array(int* pdest, const int* psource, int size)
+{
+	while(size--)
+		*pdest++ = *psource++;	
 }
