@@ -7,16 +7,21 @@
 #define NUMBER_OF_POINTS        1000000000
 
 
+void foo(const int* p)
+{
+    int* xptr = p;
+}
+
 int main() 
 {
+   int ar[5]  = {0, 1, 2, 3, 4};
 
-    int x = 10;
+   int* px = ar + 5;
+   int* py = ar + 5;
 
-    printf("(&x)[0]: %d\n", (&x)[0]);
-
-    int* ptr = &x;
-    ++ptr;
-
-    printf("*--ptr: %d\n", *--ptr);
+   if (px == py)
+       puts("Evet  esit\n");
+    else
+        puts("Hayir esit degil\n");
 
 }

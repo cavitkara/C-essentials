@@ -64,5 +64,7 @@ void reverse_array2(int* , int);
 void reverse_array3(int*, int);
 void bsort(int arr[], int size);
 void copy_array(int* pdest, const int* source, int size);
+void reverse_copy(int* pdest, const int* source, int size);
+void reverse_copy2(int* pdest, const int* psource, int size);
 
 #endif

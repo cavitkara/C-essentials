@@ -574,3 +574,16 @@ void copy_array(int* pdest, const int* psource, int size)
 	while(size--)
 		*pdest++ = *psource++;	
 }
+
+void reverse_copy(int* pdest, const int* psource, int size)
+ {
+	for (int i = 0; i < size; ++i )
+		 pdest[i] = psource[size - 1 - i];
+ }
+
+ void reverse_copy2(int* pdest, const int* psource, int size)
+ {
+	pdest += size;
+	while (size--)
+		*--pdest = *psource++;
+ }
